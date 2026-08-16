@@ -1,5 +1,7 @@
 #assignment
 class Assignment:
+
+    #this function initialize all the common details every assignment should have
     def __init__(self,subject,title,score, max_score,due_date, assignment_type):
         self.subject=subject
         self.title=title
@@ -10,11 +12,15 @@ class Assignment:
 
 #Inheritance
 class Homework(Assignment):
+
+     #initialize homework and also gets the assignment information from the parent class
     def __init__(self,subject,title, score, max_score, due_date, assignment_type,contribution_homework):
         self.contribution_homework= contribution_homework
         super().__init__(subject, title, score, max_score, due_date,assignment_type)  
 
 class Exam(Assignment):
+
+    #initialize exam and gets the common assignment details from the parent class
     def __init__(self,subject,title, score, max_score, due_date, assignment_type,contribution_exam):
         self.contribution_exam= contribution_exam
         super().__init__(subject, title, score, max_score, due_date,assignment_type) 
@@ -23,9 +29,15 @@ class Exam(Assignment):
 #Adding, Listing, Filtering, Summarizing
 
 class GradeTracker:
+
+        #initialize the grade tracker with an empty list where the assignments will be stored
+
     def __init__(self):
         self.assignments=[]
 #Adding:
+
+    #this function checks if the score is valid before adding the assignment into my list
+
     def add_assignment(self, assignment):
         if assignment.score<=assignment.max_score and assignment.score>=0 and assignment.max_score>0:
            self.assignments.append(assignment)  
@@ -33,6 +45,9 @@ class GradeTracker:
             print("invalid score")      
 
 #listing assignment
+
+    #this function displays all the assignments that were added
+
     def list_assignments(self):
         if self.assignments==[]:
             print("No listed asssignments available")
@@ -47,6 +62,8 @@ class GradeTracker:
            print("due date:", assignment.due_date)
            print()
 #filtering assignment
+
+    #this function allows my user to filter assignments by subject, type or month
     def filter_assignments(self):
         if self.assignments==[]:
             print("No filtered assignments available")
@@ -93,7 +110,7 @@ class GradeTracker:
             print("invalid filtering requirement")                    
 
 #summarizing grades
-    def summary(self):
+    def summary(self):      #this function calculates the overall average, subject averages, highest and lowest assignment
         if self.assignments==[]:
             print("No asssignments available")
             print()
@@ -149,6 +166,8 @@ class GradeTracker:
 
 grade_tracker=GradeTracker() 
 
+
+#this function asks the user for homework details and creates a homework object
 def add_homework(grade_tracker):
     subject=input("Enter your subject: ")
     title=input("Enter your title: ")
@@ -165,6 +184,8 @@ def add_homework(grade_tracker):
         else:
               print("Invalid score")
 
+
+#this function asks the user for exam details and creates an exam object
 def add_exam(grade_tracker):
     subject=input("Enter your subject: ")
     title=input("Enter your title: ")
@@ -182,6 +203,8 @@ def add_exam(grade_tracker):
             print("Invalid score")                
 
 #menu choices
+
+#while True keeps the menu running until my user decides to exit
 while True:
     print("1. Add homework")
     print("2. Add exam")
