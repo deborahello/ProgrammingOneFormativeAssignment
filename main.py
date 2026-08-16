@@ -169,8 +169,20 @@ grade_tracker=GradeTracker()
 
 #this function asks the user for homework details and creates a homework object
 def add_homework(grade_tracker):
-    subject=input("Enter your subject: ")
-    title=input("Enter your title: ")
+    while True:
+        subject=input("Enter your subject: ").strip()
+        if subject.replace(" ", "").isalpha():
+            break
+        else:
+            print("Subject must contain letters only")
+
+    while True:
+        title=input("Enter your title: ").strip()
+        if title.replace(" ", "").isalpha():
+            break
+        else:
+            print("Title must contain letters only")
+    
     try:
         score=float(input("Enter your score: "))
         max_score=float(input("Enter your max score: "))
@@ -178,7 +190,22 @@ def add_homework(grade_tracker):
         print("Score and Max_score must be numbers")
     else:
         if score<=max_score and score>=0 and max_score>0:
-            due_date=input("Enter your assignment date: ")
+
+            while True :
+                due_date=input("Enter your assignment date (DD/MM/YYYY): ").strip()
+                date_parts=due_date.split("/")
+
+                if len(date_parts)==3:
+                    day=date_parts[0]
+                    month=date_parts[1]
+                    year=date_parts[2]
+
+                    if day.isdigit() and month.isdigit() and year.isdigit():
+                        if 1<=int(day)<=31 and 1<=int(month)<=12 and len(year)==4:
+                            break
+                print("Invalid date. Please use DD/MM/YYYY")                  
+           
+          
             new_homework=Homework(subject,title,score,max_score, due_date, "homework", 40)
             grade_tracker.add_assignment(new_homework)
         else:
@@ -187,8 +214,21 @@ def add_homework(grade_tracker):
 
 #this function asks the user for exam details and creates an exam object
 def add_exam(grade_tracker):
-    subject=input("Enter your subject: ")
-    title=input("Enter your title: ")
+
+    while True:
+        subject=input("Enter your subject: ").strip()
+        if subject.replace(" ", "").isalpha():
+            break
+        else:
+            print("Subject must contain letters only")
+
+    while True:
+        title=input("Enter your title: ").strip()
+        if title.replace(" ", "").isalpha():
+            break
+        else:
+            print("Title must contain letters only")
+
     try:
         score=float(input("Enter your score: "))
         max_score=float(input("Enter your max score: "))
@@ -196,7 +236,22 @@ def add_exam(grade_tracker):
         print("Score and Max_score must be numbers")
     else:
         if score<=max_score and score>=0 and max_score>0:
-            due_date=input("Enter your assignment date: ")
+
+            while True :
+                due_date=input("Enter your assignment date (DD/MM/YYYY): ").strip()
+                date_parts=due_date.split("/")
+
+                if len(date_parts)==3:
+                    day=date_parts[0]
+                    month=date_parts[1]
+                    year=date_parts[2]
+
+                if day.isdigit() and month.isdigit() and year.isdigit():
+                    if 1<=int(day)<=31 and 1<=int(month)<=12 and len(year)==4:
+                        break
+
+                print("Invalid date. Please use DD/MM/YYYY")         
+            
             new_exam=Exam(subject,title,score,max_score, due_date, "exam", 60)
             grade_tracker.add_assignment(new_exam)
         else:
