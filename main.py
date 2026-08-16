@@ -191,10 +191,10 @@ while True:
     print("0. Exit")
     menu_choice=input("Enter your choice: ")
     if menu_choice=="1":
-        grade_tracker.add_assignment(grade_tracker)
+        add_homework(grade_tracker)
 
     elif menu_choice=="2":
-        grade_tracker.add_assignment(grade_tracker)
+        add_exam(grade_tracker)
                      
 
     elif menu_choice=="3":
