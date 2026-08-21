@@ -83,7 +83,7 @@ class GradeTracker:
 
 #filtering by type               
         elif filter_requirement=="type":
-            filter_type=input("Assignment type (homework or exam)?: ").strip().lower()   
+            filter_type=input("Assignment type (homework or exam)?: ").strip().lower() #removing the white space and lowering the case  
             for assignment in self.assignments:
                 if filter_type==assignment.assignment_type:
                     print(assignment.assignment_type)
@@ -96,7 +96,7 @@ class GradeTracker:
             month=input("Assignment month? ")
             match_count=0
             for assignment in self.assignments:
-                if month==assignment.due_date.split("/")[1]:
+                if month==assignment.due_date.split("/")[1]:  #spliting due date into multiple sting to get month in index (1)
                     match_count+=1
                     print(assignment.assignment_type)
                     print(assignment.subject)
@@ -123,7 +123,7 @@ class GradeTracker:
             total_score+=assignment.score 
             total_max+=assignment.max_score
         average= (total_score/total_max)*100
-        print("overall average in percentage=",((round(average,2))),"%")
+        print("overall average in percentage=",((round(average,2))),"%") # rounding the average to 2 decimal place
 
 # per subject average
         subject_scores={}
@@ -183,12 +183,12 @@ def add_homework(grade_tracker):
         else:
             print("Title must contain letters only")
     
-    try:
+    try:   # trying to change the score and max score entered by the user into numbers
         score=float(input("Enter your score: "))
         max_score=float(input("Enter your max score: "))
-    except ValueError:
+    except ValueError:    #this happens when the user enters something that can not be changed into numbers
         print("Score and Max_score must be numbers")
-    else:
+    else:    # this part runs only when the uder enters valid numbers for score and max_score
         if score<=max_score and score>=0 and max_score>0:
 
             while True :
@@ -229,12 +229,12 @@ def add_exam(grade_tracker):
         else:
             print("Title must contain letters only")
 
-    try:
-        score=float(input("Enter your score: "))
+    try:  # trying to change the score and max score entered by the user into numbers
+        score=float(input("Enter your score: "))        
         max_score=float(input("Enter your max score: "))
-    except ValueError:
+    except ValueError:   #this happens when the user enters something that can not be changed into numbers
         print("Score and Max_score must be numbers")
-    else:
+    else:   # this part runs only when the uder enters valid numbers for score and max_score
         if score<=max_score and score>=0 and max_score>0:
 
             while True :
